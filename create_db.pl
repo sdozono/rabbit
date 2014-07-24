@@ -1,8 +1,14 @@
 use strict;
 use DBI;
+require "settings.cgi";
+our $dbname;
+our $my_dbi;
 
-# Connection
-my $dbh = DBI->connect("dbi:SQLite:dbname=addrbook2.db");
+# connect DB
+our $dbh = DBI->connect($my_dbi) or do {
+    print_err('can not connect database.');
+    exit 0;
+};
 
 # Table definition
 $dbh->do("create table personal (id INTEGER PRIMARY KEY AUTOINCREMENT, name,addr, tel, email);");
