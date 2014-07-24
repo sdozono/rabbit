@@ -1,6 +1,5 @@
 ###########################################
 # "Rabbit" development framework for cgi.
-# 2014 Communcation Business Avenue, Inc.
 # by SD
 # license: MIT
 ###########################################
