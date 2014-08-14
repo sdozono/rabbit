@@ -29,32 +29,18 @@ $request_method = $cgi->request_method;
 # Methods
 ###########
 
+
 sub action_all {
     my $cols = &list_cols(1);
     my $sql = "SELECT ".$cols." FROM ".$table_name;
-    $sth = $dbh->prepare($sql) or do {
-        print_err("SQL Prepare Failed.($sql)", __LINE__,$DBI::errstr);
-        exit 0;
-    };
-    my $rc = $sth->execute or do {
-        print_err("SQL Exec Failed. ($sql)", __LINE__,$DBI::errstr);
-        exit 0;
-    };
+    myquery($sql);
 }
 
 sub action_add {
     my $cols = &list_cols(0);
     my $vals = &list_vals(0);
     my $sql = "insert into ".$table_name. " (".$cols.") values (".$vals.");";
-    #print_err("SQL:".$sql);
-    $sth = $dbh->prepare($sql) or do {
-        print_err("SQL Prepare Failed.($sql)", __LINE__,$DBI::errstr);
-        exit 0;
-    };
-    my $rc = $sth->execute or do {
-        print_err("SQL Failed: $sql", __LINE__,$DBI::errstr);
-        exit 0;
-    };
+    myquery($sql);
 }
 
 sub action_edit {
@@ -66,17 +52,8 @@ sub action_edit {
         exit 0;
     }
     if($request_method eq 'GET'){
-        #print_err("Start editing...".$data);
-        #retrive data
         my $sql = "select * from ".$table_name." where id=".$id;
-        $sth = $dbh->prepare($sql) or do {
-            print_err("SQL Prepare Failed.($sql)", __LINE__,$DBI::errstr);
-            exit 0;
-        };
-        my $rc = $sth->execute or do {
-            print_err("SQL Failed: $sql", __LINE__,$DBI::errstr);
-            exit 0;
-        };
+        myquery($sql);
     } else {
         #update data
         my $sql = " update ".$table_name." SET ";
@@ -94,26 +71,16 @@ sub action_edit {
             }
         }
         $sql .= "where id =".$id.";";
-        #print_err("Update".$sql);
-        #exit 0;
-        $dbh->do($sql) or do {
-            print_err("SQL Failed: $sql", __LINE__,$DBI::errstr);
-            exit 0;
-        };
+        myquery($sql);
     }
 }
 
 sub action_del {
     my $id = shift;
     my $sql = "delete from ".$table_name. " where id = ".$id.";";
-    $dbh->do($sql) or do {
-        print_err("SQL Failed: $sql", __LINE__,$DBI::errstr);
-        exit 0;
-    };
+    myquery($sql);
     my @urlinfo = &split_url($ENV{REQUEST_URI});
     print CGI::redirect($urlinfo[4]);
-    #my $t = join ',', @urlinfo;
-    #print_err($urlinfo[4]."<br>".$t);
 }
 
 ############
@@ -150,6 +117,17 @@ sub show_all {
 ###########
 # Funcs
 ###########
+sub myquery {
+    my $sql = shift;
+    $sth = $dbh->prepare($sql) or do {
+        print_err("SQL Prepare Failed.($sql)", __LINE__,$DBI::errstr);
+        exit 0;
+    };
+    my $rc = $sth->execute or do {
+        print_err("SQL Exec Failed. ($sql)", __LINE__,$DBI::errstr);
+        exit 0;
+    };
+}
 
 sub list_cols {
     my $all_flag = shift;
