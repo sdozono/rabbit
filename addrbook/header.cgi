@@ -8,7 +8,7 @@
     print "function mydel(id)\n";
     print "{\n";
     print "    c = confirm('ID:'+id+'を削除しますか？');\n";
-    print "    return c;";
+    print "    return c;\n";
     print "}\n";
     print "//-->\n";
     print "</script>\n";

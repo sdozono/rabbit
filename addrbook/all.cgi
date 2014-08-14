@@ -1,15 +1,4 @@
 #!/usr/bin/perl
-    my $cols = &list_cols(1);
-    my $sql = "SELECT ".$cols." FROM ".$table_name;
-    my $sth = $dbh->prepare($sql) or do {
-        print_err("SQL Prepare Failed.($sql)", __LINE__,$DBI::errstr);
-        exit 0;
-    };
-    my $rc = $sth->execute or do {
-        print_err("SQL Exec Failed. ($sql)", __LINE__,$DBI::errstr);
-        exit 0;
-    };
-
     print '<table border="1">';
     print '<tr>';
     for my $item (@items){
@@ -28,9 +17,9 @@
                 }
             }
             #action
-            print "<td><a href='?method=edit&id=".$id."' >編集</a></td>\n";
+            print "<td><a href='?action=edit&id=".$id."' >編集</a></td>\n";
             my $del = "if(!mydel(".$id.")){return false;}";
-            print "<td><a href='?method=del&id=".$id."' onclick='".$del."'>削除</a></td>\n";
+            print "<td><a href='?action=del&id=".$id."' onclick='".$del."'>削除</a></td>\n";
         print "</tr>\n";
     }
     print "</table>";

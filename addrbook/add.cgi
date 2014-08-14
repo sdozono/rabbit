@@ -1,6 +1,6 @@
 #!/usr/bin/perl
-    print '<form action="addrbook.cgi" method="POST">';
-    print '<input type="hidden" name="method" value="add">';
+    print '<form action="" method="POST">';
+    print '<input type="hidden" name="action" value="add">';
     for my $item (@items){
         if($item->[0] ne "id"){
             print $item->[1].": <input type='text' name='".$item->[0]."'><br>\n";
