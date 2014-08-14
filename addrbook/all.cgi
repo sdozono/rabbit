@@ -4,7 +4,7 @@
     for my $item (@items){
         print "<th>".$item->[1]."</th>\n";
     }
-    print "<th colspan=2>操作</th>\n";
+    print "<th colspan=2>".__("actions")."</th>\n";
     print '</tr>';
 
     while (my $ref_row = $sth->fetchrow_hashref) {
@@ -17,9 +17,9 @@
                 }
             }
             #action
-            print "<td><a href='?action=edit&id=".$id."' >編集</a></td>\n";
+            print "<td><a href='?action=edit&id=".$id."' >".__("edit")."</a></td>\n";
             my $del = "if(!mydel(".$id.")){return false;}";
-            print "<td><a href='?action=del&id=".$id."' onclick='".$del."'>削除</a></td>\n";
+            print "<td><a href='?action=del&id=".$id."' onclick='".$del."'>".__("delete")."</a></td>\n";
         print "</tr>\n";
     }
     print "</table>";

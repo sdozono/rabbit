@@ -1,20 +1,21 @@
 #!/usr/bin/perl
 use strict;
 require "rabbit.pl";
+require "translation.cgi";
 
-#初期設定
+#Inial Settings
 our $method = "";
 our $table_name = "personal";
-our $title = "アドレス帳";
+our $title = __("Address Book");
 our $request_method;
 
-#テーブルデータ
+#Table Data
 our @items=(
     ["id", "id"],
-    ["name","名前"],
-    ["addr","住所"],
-    ["tel","電話"],
-    ["email","メール"]
+    ["name",__("name")],
+    ["addr",__("addr")],
+    ["tel"  ,__("tel")],
+    ["email",__("email")]
 );
 
 #Controller

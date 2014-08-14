@@ -28,8 +28,6 @@ $request_method = $cgi->request_method;
 ###########
 # Methods
 ###########
-
-
 sub action_all {
     my $cols = &list_cols(1);
     my $sql = "SELECT ".$cols." FROM ".$table_name;
@@ -119,6 +117,16 @@ sub show_all {
 ###########
 # Funcs
 ###########
+sub __{
+    our $translations;
+    my $str = shift;
+    if(exists($translations{$str})){
+        return $translations{$str};
+    } else {
+        return $str;
+    }
+}
+
 sub myquery {
     my $sql = shift;
     $sth = $dbh->prepare($sql) or do {

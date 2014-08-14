@@ -7,7 +7,7 @@
     print "<!--\n";
     print "function mydel(id)\n";
     print "{\n";
-    print "    c = confirm('ID:'+id+'を削除しますか？');\n";
+    print "    c = confirm('".__("Are you going to delete")."ID:'+id+'".__("?")."');\n";
     print "    return c;\n";
     print "}\n";
     print "//-->\n";
