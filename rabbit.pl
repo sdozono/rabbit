@@ -72,6 +72,8 @@ sub action_edit {
         }
         $sql .= "where id =".$id.";";
         myquery($sql);
+        my @urlinfo = &split_url($ENV{REQUEST_URI});
+        print CGI::redirect($urlinfo[4]);
     }
 }
 
