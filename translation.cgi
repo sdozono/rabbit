@@ -13,6 +13,7 @@ our %translations=(
     "modify"	=>	"修正",
     "Are you going to delete"	=>	"",
     "?"	=>	"を削除しますか？",
+    "reset"	=>	"リセット",
 );
 
 1;
