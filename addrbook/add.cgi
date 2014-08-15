@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+    print '<fieldset>';
     print '<form action="" method="POST">';
     print '<input type="hidden" name="action" value="add">';
     for my $item (@items){
@@ -8,4 +9,5 @@
     }
     print '<input type="submit" value="'.__("add").'">';
     print '</form>';
+    print '</fieldset>';
 

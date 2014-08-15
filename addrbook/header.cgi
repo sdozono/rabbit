@@ -3,6 +3,7 @@
     print "<html>\n";
     print "<head>\n";
     print "<link rel='stylesheet' href='css/table.css' type='text/css'>\n";
+    print "<link rel='stylesheet' href='css/form.css' type='text/css'>\n";
     print "<title>".$title."</title>\n";
     print "<script type='text/javascript'>\n";
     print "<!--\n";
