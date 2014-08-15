@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-    print '<table border="1">';
+    print '<table class="table_design">';
     print '<tr>';
     for my $item (@items){
         print "<th>".$item->[1]."</th>\n";
